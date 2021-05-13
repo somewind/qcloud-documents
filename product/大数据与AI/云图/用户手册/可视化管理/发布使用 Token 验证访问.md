@@ -31,12 +31,11 @@ NodeJS 生成签名示例：
  const crypto = require('crypto');
  const accessId = "81a663dbaaab055xxxxxxxxxxxxx4a56";
  const token = "c6v9aw4gpRo1yn6DlIxxxxxxxxxxxxxK";
- const timestamp = Date.now();
+ const timestamp = parseInt(Date.now() / 1000);
  const nonce = parseInt(Math.random() * 100000, 10);
  const signStr = accessId + ',' + timestamp + ',' + nonce;
  const signRet = encodeURIComponent(crypto.createHmac('sha256', token).update(signStr).digest().toString('base64')); // 下面生成的 url 用于访问大屏
- const url = 'http://v.yuntus.com/cloudv/' + accessId + '?signa
-ture='+ signRet + '&timestamp=' + timestamp + '&nonce=' + nonce;
+ const url = 'http://v.yuntus.com/cloudv/' + accessId + '?signature='+ signRet + '&timestamp=' + timestamp + '&nonce=' + nonce;
 ```
 
 ### 安全校验策略说明
